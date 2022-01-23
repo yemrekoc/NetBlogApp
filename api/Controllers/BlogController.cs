@@ -11,14 +11,14 @@ namespace api.Controllers
     [Route("[controller]")]
     public class BlogController : Controller
     {
-        private readonly MongoClient client;
+        //private readonly MongoClient client;
         private readonly IBlogService blogService;
         
 
         public BlogController(IBlogService blogService)
         {
             //client = new MongoClient("mongodb://yekdbuser:VumJi8QL2wYKEeV9@yekcluster-shard-00-00.0duvw.mongodb.net:27017,yekcluster-shard-00-01.0duvw.mongodb.net:27017,yekcluster-shard-00-02.0duvw.mongodb.net:27017/CarParkDB?ssl=true&replicaSet=yekcluster-shard-0&authSource=admin&retryWrites=true&w=majority");
-            client = new MongoClient("mongodb://127.0.0.1:27017/");
+            //client = new MongoClient("mongodb://127.0.0.1:27017/");
             this.blogService = blogService;
 
         }
