@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Services.BlogServices
 {
-    public class BlogService :IBlogService
+    public class BlogService : IBlogService
     {
         private readonly IBlogDataAccess blogDataAccess;
 
@@ -30,9 +30,37 @@ namespace Services.BlogServices
 
         public async Task<GetOneResult<Blog>> GetOneBlogAsync(string id)
         {
-            var data = await blogDataAccess.GetByIdAsync(id);
-            data.Message = "Bir blog getirildi";
-            return data;
+            var result = await blogDataAccess.GetByIdAsync(id);
+            result.Message = "Bir blog getirildi";
+            return result;
+        }
+
+        public async Task<GetOneResult<Blog>> InsertOneAsync(Blog data)
+        {
+            var result = await blogDataAccess.InsertOneAsync(data);
+            result.Message = "Bir blog kaydedildi";
+            return result;
+        }
+
+        public async Task<GetOneResult<Blog>> UpdateOneAsync(string id, Blog updateData)
+        {
+            var data =  await blogDataAccess.GetByIdAsync(id);
+            data.Entity.Title = updateData.Title;
+            data.Entity.comSentence = updateData.comSentence;
+            data.Entity.comImage = updateData.comImage;
+            data.Entity.BlogText = updateData.BlogText;
+            data.Entity.Title = updateData.Title;
+
+            var result = await blogDataAccess.ReplaceOneAsync(data.Entity, id);
+            result.Message = "Bir blog düzenlendi";
+            return result;
+        }
+
+        public async Task<GetOneResult<Blog>> DeleteOneAsync(string id)
+        {
+            var result = await blogDataAccess.DeleteByIdAsync(id);
+            result.Message = "Bir blog silindi";
+            return result;
         }
     }
 }

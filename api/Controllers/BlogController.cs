@@ -34,5 +34,24 @@ namespace api.Controllers
         {
             return await blogService.GetOneBlogAsync(id);
         }
+
+
+        [HttpPost("InsertOneBlog")]
+        public async Task<GetOneResult<Blog>> InsertOneBlog(Blog data)
+        {
+            return await blogService.InsertOneAsync(data);
+        }
+
+        [HttpPut("UpdateOneBlog")]
+        public async Task<GetOneResult<Blog>> UpdateOneBlog(string id,Blog data)
+        {
+            return await blogService.UpdateOneAsync(id,data);
+        }
+
+        [HttpDelete("DeleteOneBlog")]
+        public async Task<GetOneResult<Blog>> DeleteOneBlog(string id)
+        {
+            return await blogService.DeleteOneAsync(id);
+        }
     }
 }
