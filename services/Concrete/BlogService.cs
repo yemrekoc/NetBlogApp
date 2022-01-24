@@ -2,6 +2,7 @@
 using DataAccess.Repository.Abstract;
 using DataAccess.Repository.Concreate;
 using Models.Entities;
+using MongoDB.Bson;
 using Services.Abstract;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,13 @@ namespace Services.BlogServices
             var list = await blogDataAccess.GetAllAsync();
 
             return list;
+        }
+
+        public async Task<GetOneResult<Blog>> GetOneBlogAsync(string id)
+        {
+            var data = await blogDataAccess.GetByIdAsync(id);
+            data.Message = "Bir blog getirildi";
+            return data;
         }
     }
 }

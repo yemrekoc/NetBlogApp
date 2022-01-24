@@ -11,5 +11,6 @@ namespace Services.Abstract
     public interface IBlogService
     {
          Task<GetManyResult<Blog>> GetAllBlogsAsync();
+         Task<GetOneResult<Blog>> GetOneBlogAsync(string id);
     }
 }
