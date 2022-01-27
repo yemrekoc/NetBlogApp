@@ -2,14 +2,16 @@
 using MongoDB.Driver;
 using Models.Entities;
 using MongoDB.Bson;
-using Services.BlogServices;
+using Services.Concrete;
 using Services.Abstract;
 using DataAccess.MSettings;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize]
     public class BlogController : Controller
     {
         //private readonly MongoClient client;
@@ -24,6 +26,7 @@ namespace api.Controllers
         }
 
         [HttpGet("GetAllBlogs")]
+        [AllowAnonymous]
         public async Task<GetManyResult<Blog>> GetAllBlogs()
         {
             return await blogService.GetAllBlogsAsync();

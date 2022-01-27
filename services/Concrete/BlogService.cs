@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.BlogServices
+namespace Services.Concrete
 {
     public class BlogService : IBlogService
     {

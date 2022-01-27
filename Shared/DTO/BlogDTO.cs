@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.Entities
+namespace Shared.DTO
 {
-    public class Blog
+    public class BlogDTO
     {
 
         [BsonId]

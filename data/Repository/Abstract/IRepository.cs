@@ -28,5 +28,6 @@ namespace DataAccess.Repository.Abstract
         Task<GetOneResult<TEntity>> DeleteByIdAsync(string id);
         void DeleteMany(Expression<Func<TEntity, bool>> filter);
         Task DeleteManyAsync(Expression<Func<TEntity, bool>> filter);
+        Task<GetOneResult<TEntity>> GetOneFilterByAsync(Expression<Func<TEntity, bool>> filter);
     }
 }

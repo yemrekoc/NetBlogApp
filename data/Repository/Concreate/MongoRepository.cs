@@ -338,5 +338,23 @@ namespace DataAccess.Repository.Concreate
             }
             return result;
         }
+
+        public async Task<GetOneResult<TEntity>> GetOneFilterByAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            var result = new GetOneResult<TEntity>();
+            try
+            {
+                var data = await _collection.Find(filter).FirstOrDefaultAsync();
+                if (data != null)
+                    result.Entity = data;
+            }
+            catch (Exception ex)
+            {
+                result.Message = $"FilterBy {ex.Message}";
+                result.Success = false;
+                result.Entity = null;
+            }
+            return result;
+        }
     }
 }
