@@ -1,5 +1,6 @@
 ﻿using DataAccess.MSettings;
 using Models.Entities;
+using Shared.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace Services.Abstract
 {
     public interface IBlogService
     {
-        Task<GetManyResult<Blog>> GetAllBlogsAsync();
-        Task<GetOneResult<Blog>> GetOneBlogAsync(string id);
-        Task<GetOneResult<Blog>> InsertOneAsync(Blog data);
-        Task<GetOneResult<Blog>> UpdateOneAsync(string id,Blog data);
-        Task<GetOneResult<Blog>> DeleteOneAsync(string id);
+        Task<List<BlogDTO>> GetAllBlogsAsync();
+        Task<BlogDTO> GetOneBlogAsync(string id);
+        Task<BlogDTO> InsertOneAsync(BlogDTO data);
+        Task<BlogDTO> UpdateOneAsync(string id,BlogDTO data);
+        Task<BlogDTO> DeleteOneAsync(string id);
     }
 }

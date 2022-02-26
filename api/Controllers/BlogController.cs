@@ -6,6 +6,8 @@ using Services.Concrete;
 using Services.Abstract;
 using DataAccess.MSettings;
 using Microsoft.AspNetCore.Authorization;
+using Shared.ResponseModels;
+using Shared.DTO;
 
 namespace api.Controllers
 {
@@ -27,34 +29,49 @@ namespace api.Controllers
 
         [HttpGet("GetAllBlogs")]
         [AllowAnonymous]
-        public async Task<GetManyResult<Blog>> GetAllBlogs()
+        public async Task<ServiceResponse<List<BlogDTO>>> GetAllBlogs()
         {
-            return await blogService.GetAllBlogsAsync();
+            return new ServiceResponse<List<BlogDTO>>()
+            {
+                Value = await blogService.GetAllBlogsAsync()
+            };
         }
 
         [HttpGet("GetOneBlog/{id}")]
-        public async Task<GetOneResult<Blog>> GetOneBlog(string id)
+        public async Task<ServiceResponse<BlogDTO>> GetOneBlog(string blogId)
         {
-            return await blogService.GetOneBlogAsync(id);
+            return new ServiceResponse<BlogDTO>()
+            {
+                Value = await blogService.GetOneBlogAsync(blogId)
+            };
         }
 
 
         [HttpPost("InsertOneBlog")]
-        public async Task<GetOneResult<Blog>> InsertOneBlog(Blog data)
+        public async Task<ServiceResponse<BlogDTO>> InsertOneBlog(BlogDTO data)
         {
-            return await blogService.InsertOneAsync(data);
+            return new ServiceResponse<BlogDTO>()
+            {
+                Value = await blogService.InsertOneAsync(data)
+            };
         }
 
         [HttpPut("UpdateOneBlog")]
-        public async Task<GetOneResult<Blog>> UpdateOneBlog(string id,Blog data)
+        public async Task<ServiceResponse<BlogDTO>> UpdateOneBlog(string id, BlogDTO data)
         {
-            return await blogService.UpdateOneAsync(id,data);
+            return new ServiceResponse<BlogDTO>()
+            {
+                Value = await blogService.UpdateOneAsync(id,data)
+            };
         }
 
         [HttpDelete("DeleteOneBlog")]
-        public async Task<GetOneResult<Blog>> DeleteOneBlog(string id)
+        public async Task<ServiceResponse<BlogDTO>> DeleteOneBlog(string id)
         {
-            return await blogService.DeleteOneAsync(id);
+            return new ServiceResponse<BlogDTO>()
+            {
+                Value = await blogService.DeleteOneAsync(id)
+            };
         }
     }
 }
